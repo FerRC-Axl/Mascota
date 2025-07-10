@@ -1,0 +1,44 @@
+using System;
+
+namespace MascotasApp
+{
+    // Definimos la clase Mascota
+    class Mascota
+    {
+        // Atributos privados
+        private string nombre;
+        private int edad;
+        private string tipo;     // Por ejemplo: "perro", "gato", "ajolote"
+        private string sonido;   // Aunque no se use como método, sigue estando como atributo
+
+        // Constructor para inicializar los atributos
+        public Mascota(string nom, int ed, string ti, string son)
+        {
+            nombre = nom;
+            edad = ed;
+            tipo = ti;
+            sonido = son;
+        }
+
+        // Método para mostrar la información de la mascota
+        public void MostrarInformacion()
+        {
+            Console.WriteLine("Nombre: " + nombre);
+            Console.WriteLine("Edad: " + edad + " años");
+            Console.WriteLine("Tipo: " + tipo);
+        }
+    }
+
+    // Clase principal
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Creamos una mascota
+            Mascota miMascota = new Mascota("Axel", 2, "ajolote", "blub blub");
+
+            // Mostramos su información
+            miMascota.MostrarInformacion();
+        }
+    }
+}
