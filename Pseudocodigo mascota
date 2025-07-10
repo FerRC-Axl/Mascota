@@ -1,0 +1,35 @@
+Inicio
+
+    Definir clase Mascota
+        Definir atributos privados:
+            nombre: texto
+            edad: entero
+            tipo: texto
+            sonido: texto
+
+        Definir constructor(nom, ed, ti, son)
+            Asignar nombre = nom
+            Asignar edad = ed
+            Asignar tipo = ti
+            Asignar sonido = son
+
+        Método MostrarInformacion()
+            Mostrar "Nombre: " + nombre
+            Mostrar "Edad: " + edad + " años"
+            Mostrar "Tipo: " + tipo
+
+    Fin clase Mascota
+
+    Definir clase principal Program
+        Método Main()
+            Crear objeto miMascota de tipo Mascota con:
+                nombre = "Axel"
+                edad = 2
+                tipo = "ajolote"
+                sonido = "blub blub"
+
+            Llamar a miMascota.MostrarInformacion()
+
+    Fin clase principal
+
+Fin
