@@ -1,14 +1,11 @@
 using System;
-
-namespace MascotasApp
-{
-    class Mascota
+ class Mascota
     {
         private string nombre;
         private int edad;
         private string tipo;
         private string sonido;
-
+        
         public Mascota(string nom, int ed, string ti, string son)
         {
             nombre = nom;
@@ -39,23 +36,28 @@ namespace MascotasApp
             return edad;
         }
 
+        private Dictionary<string, int> factoresEdad = new Dictionary<string, int>
+        {
+            { "perro", 7 },
+            { "gato", 7 },
+            { "ajolote", 3 }
+              };
+
         public int CalcularEdadHumana()
         {
-            if (tipo == "perro" || tipo == "gato")
-                return edad * 7;
-            else if (tipo == "ajolote")
-                return edad * 3;
-            else
-                return edad;
+        if (factoresEdad.ContainsKey(tipo))
+        return edad * factoresEdad[tipo];
+          else
+             return edad;
         }
-    }
+           } 
 
     class Program
     {
         static void Main(string[] args)
         {
-            Mascota m1 = new Mascota("Firulais", 4, "perro", "guau");
-            Mascota m2 = new Mascota("Michi", 2, "gato", "miau");
+            Mascota m1 = new Mascota("Luka", 4, "perro", "guau");
+            Mascota m2 = new Mascota("Mele", 2, "gato", "miau");
             Mascota m3 = new Mascota("Axel", 1, "ajolote", "blub blub");
 
             // Perro
@@ -85,4 +87,3 @@ namespace MascotasApp
             Console.WriteLine("Nueva edad humana: " + m3.CalcularEdadHumana());
         }
     }
-}
