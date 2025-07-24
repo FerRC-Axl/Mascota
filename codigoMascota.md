@@ -8,7 +8,6 @@ class Mascota
     private int edad;
     private string tipo;
     private string sonido;
-    
     public Mascota(string nom, int ed, string ti, string son)
     {
         nombre = nom;
