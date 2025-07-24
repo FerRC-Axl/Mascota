@@ -1,89 +1,104 @@
 using System;
- class Mascota
+using System.Collections.Generic;
+
+class Mascota
+{
+    private string nombre;
+    private int edad;
+    private string tipo;
+    private string sonido;
+
+    public Mascota(string nom, int ed, string ti, string son)
     {
-        private string nombre;
-        private int edad;
-        private string tipo;
-        private string sonido;
+        nombre = nom;
+        edad = ed;
+        tipo = ti;
+        sonido = son;
+    }
 
-        public Mascota(string nom, int ed, string ti, string son)
-        {
-            nombre = nom;
-            edad = ed;
-            tipo = ti;
-            sonido = son;
-        }
+    public void MostrarInformacion()
+    {
+        Console.WriteLine("Nombre: " + nombre);
+        Console.WriteLine("Edad: " + edad + " años");
+        Console.WriteLine("Tipo: " + tipo);
+    }
 
-        public void MostrarInformacion()
-        {
-            Console.WriteLine("Nombre: " + nombre);
-            Console.WriteLine("Edad: " + edad + " años");
-            Console.WriteLine("Tipo: " + tipo);
-        }
+    public void EmitirSonido()
+    {
+        Console.WriteLine(nombre + " dice: " + sonido);
+    }
 
-        public void EmitirSonido()
-        {
-            Console.WriteLine(nombre + " dice: " + sonido);
-        }
+    public void SetEdad(int nuevaEdad)
+    {
+        edad = nuevaEdad;
+    }
 
-        public void SetEdad(int nuevaEdad)
-        {
-            edad = nuevaEdad;
-        }
+    public int GetEdad()
+    {
+        return edad;
+    }
 
-        public int GetEdad()
-        {
-            return edad;
-        }
+    private Dictionary<string, int> factoresEdad = new Dictionary<string, int>
+    {
+        { "perro", 7 },
+        { "gato", 7 },
+        { "ajolote", 3 }
+    };
 
-        private Dictionary<string, int> factoresEdad = new Dictionary<string, int>
-        {
-            { "perro", 7 },
-            { "gato", 7 },
-            { "ajolote", 3 }
-              };
-
-        public int CalcularEdadHumana()
-        {
+    public int CalcularEdadHumana()
+    {
         if (factoresEdad.ContainsKey(tipo))
-        return edad * factoresEdad[tipo];
-          else
-             return edad;
-        }
-           } 
+            return edad * factoresEdad[tipo];
+        else
+            return edad;
+    }
+}
 
-    class Program
+class Program
+{
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        // Crear mascotas con edad inicial 0 (la pedirá el usuario)
+        Mascota m1 = new Mascota("Luka", 0, "perro", "guau");
+        Mascota m2 = new Mascota("Mele", 0, "gato", "miau");
+        Mascota m3 = new Mascota("Axel", 0, "ajolote", "blub blub");
+
+        Console.WriteLine("¿Qué mascota quieres conocer? (Luka / Mele / Axel)");
+        string opcion = Console.ReadLine().ToLower(); // Convertimos a minúsculas para evitar errores
+
+        switch (opcion)
         {
-            Mascota m1 = new Mascota("Luka", 4, "perro", "guau");
-            Mascota m2 = new Mascota("Mele", 2, "gato", "miau");
-            Mascota m3 = new Mascota("Axel", 1, "ajolote", "blub blub");
+            case "luka":
+                MostrarDatosMascota(m1);
+                break;
 
-            // Perro
-            m1.MostrarInformacion();
-            m1.EmitirSonido();
-            Console.WriteLine("Edad humana: " + m1.CalcularEdadHumana());
-            m1.SetEdad(5);
-            Console.WriteLine("Nueva edad: " + m1.GetEdad());
-            Console.WriteLine("Nueva edad humana: " + m1.CalcularEdadHumana());
-            Console.WriteLine();
+            case "mele":
+                MostrarDatosMascota(m2);
+                break;
 
-            // Gato
-            m2.MostrarInformacion();
-            m2.EmitirSonido();
-            Console.WriteLine("Edad humana: " + m2.CalcularEdadHumana());
-            m2.SetEdad(3);
-            Console.WriteLine("Nueva edad: " + m2.GetEdad());
-            Console.WriteLine("Nueva edad humana: " + m2.CalcularEdadHumana());
-            Console.WriteLine();
+            case "axel":
+                MostrarDatosMascota(m3);
+                break;
 
-            // Ajolote
-            m3.MostrarInformacion();
-            m3.EmitirSonido();
-            Console.WriteLine("Edad humana: " + m3.CalcularEdadHumana());
-            m3.SetEdad(2);
-            Console.WriteLine("Nueva edad: " + m3.GetEdad());
-            Console.WriteLine("Nueva edad humana: " + m3.CalcularEdadHumana());
+            default:
+                Console.WriteLine("Opción no válida. Escribe Luka, Mele o Axel.");
+                break;
         }
     }
+
+    static void MostrarDatosMascota(Mascota mascota)
+    {
+        mascota.MostrarInformacion();
+        mascota.EmitirSonido();
+
+        Console.Write("¿Qué edad tiene la mascota? ");
+        int edad;
+        while (!int.TryParse(Console.ReadLine(), out edad) || edad < 0)
+        {
+            Console.Write("Por favor, ingresa una edad válida: ");
+        }
+
+        mascota.SetEdad(edad);
+        Console.WriteLine("Edad humana: " + mascota.CalcularEdadHumana());
+    }
+}
