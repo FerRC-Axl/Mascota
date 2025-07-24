@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 class Mascota
 {
+  
     private string nombre;
     private int edad;
     private string tipo;
     private string sonido;
-
+    
     public Mascota(string nom, int ed, string ti, string son)
     {
         nombre = nom;
@@ -56,8 +57,10 @@ class Mascota
 
 class Program
 {
+    
     static void Main(string[] args)
     {
+
         Mascota m1 = new Mascota("Luka", 0, "perro", "guau");
         Mascota m2 = new Mascota("Mele", 0, "gato", "miau");
         Mascota m3 = new Mascota("Axel", 0, "ajolote", "blub blub");
