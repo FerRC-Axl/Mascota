@@ -1,55 +1,45 @@
-CLASE Mascota
-    ATRIBUTOS PRIVADOS:
-        nombre : texto
-        edad : entero
-        tipo : texto
-        sonido : texto
+Inicio
 
-    MÉTODO Constructor(nombre, edad, tipo, sonido)
-        Asignar atributos
+    Crear mascota1 con nombre = "Luka", edad = 0, tipo = "perro", sonido = "guau"
+    Crear mascota2 con nombre = "Mele", edad = 0, tipo = "gato", sonido = "miau"
+    Crear mascota3 con nombre = "Axel", edad = 0, tipo = "ajolote", sonido = "blub blub"
 
-    MÉTODO MostrarInformacion()
-        Imprimir nombre, edad, tipo
+    Escribir "¿Qué mascota quieres conocer? (Luka / Mele / Axel)"
+    Leer opcion
 
-    MÉTODO EmitirSonido()
-        Imprimir nombre + sonido
+    Segun opcion hacer
+        Caso "luka":
+            Llamar a MostrarDatosMascota con mascota1
+            Salir
 
-    MÉTODO SetEdad(nuevaEdad)
-        edad = nuevaEdad
+        Caso "mele":
+            Llamar a MostrarDatosMascota con mascota2
+            Salir
 
-    MÉTODO GetEdad()
-        Retornar edad
+        Caso "axel":
+            Llamar a MostrarDatosMascota con mascota3
+            Salir
 
-    MÉTODO CalcularEdadHumana()
-        SI tipo es "perro" o "gato"
-            Retornar edad * 7
-        SI tipo es "ajolote"
-            Retornar edad * 3
-        SINO
-            Retornar edad
-FIN CLASE
+        De otro modo:
+            Escribir "Opción no válida. Escribe Luka, Mele o Axel."
+    FinSegun
 
-CLASE Principal
-    MÉTODO Main()
-        Crear mascota1: "Luka", 4, "perro", "guau"
-        Crear mascota2: "Mele", 2, "gato", "miau"
-        Crear mascota3: "Axel", 1, "ajolote", "blub blub"
+Fin
 
-        // Mascota 1
-        Mostrar info y sonido
-        Imprimir edad humana
-        Cambiar edad a 5
-        Mostrar nueva edad y edad humana
+Función MostrarDatosMascota(mascota)
+    Llamar a mascota.MostrarInformacion()
+    Llamar a mascota.EmitirSonido()
 
-        // Mascota 2
-        Mostrar info y sonido
-        Imprimir edad humana
-        Cambiar edad a 3
-        Mostrar nueva edad y edad humana
+    Escribir "¿Qué edad tiene la mascota?"
+    Leer edad
 
-        // Mascota 3
-        Mostrar info y sonido
-        Imprimir edad humana
-        Cambiar edad a 2
-        Mostrar nueva edad y edad humana
-FIN MÉTODO
+    Mientras edad no sea un número o sea menor que 0
+        Escribir "Edad no válida. Ingresa un número correcto"
+        Leer edad
+    FinMientras
+
+    Llamar a mascota.SetEdad(edad)
+    edadHumana ← mascota.CalcularEdadHumana()
+
+    Escribir "Edad humana: " + edadHumana
+FinFunción
