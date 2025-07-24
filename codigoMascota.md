@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 class Mascota
 {
-  
     private string nombre;
     private int edad;
     private string tipo;
     private string sonido;
+
     public Mascota(string nom, int ed, string ti, string son)
     {
         nombre = nom;
@@ -56,38 +56,49 @@ class Mascota
 
 class Program
 {
-    
     static void Main(string[] args)
     {
-
+        // Crear mascotas con edad inicial 0 (la pedirá el usuario)
         Mascota m1 = new Mascota("Luka", 0, "perro", "guau");
         Mascota m2 = new Mascota("Mele", 0, "gato", "miau");
         Mascota m3 = new Mascota("Axel", 0, "ajolote", "blub blub");
 
-        // Perro
-        m1.MostrarInformacion();
-        m1.EmitirSonido();
-        Console.Write("¿Qué edad tiene la mascota? ");
-        int edad1 = int.Parse(Console.ReadLine());
-        m1.SetEdad(edad1);
-        Console.WriteLine("Edad humana: " + m1.CalcularEdadHumana());
-        Console.WriteLine();
+        Console.WriteLine("¿Qué mascota quieres conocer? (Luka / Mele / Axel)");
+        string opcion = Console.ReadLine().ToLower(); // Convertimos a minúsculas para evitar errores
 
-        // Gato
-        m2.MostrarInformacion();
-        m2.EmitirSonido();
-        Console.Write("¿Qué edad tiene la mascota? ");
-        int edad2 = int.Parse(Console.ReadLine());
-        m2.SetEdad(edad2);
-        Console.WriteLine("Edad humana: " + m2.CalcularEdadHumana());
-        Console.WriteLine();
+        switch (opcion)
+        {
+            case "luka":
+                MostrarDatosMascota(m1);
+                break;
 
-        // Ajolote
-        m3.MostrarInformacion();
-        m3.EmitirSonido();
+            case "mele":
+                MostrarDatosMascota(m2);
+                break;
+
+            case "axel":
+                MostrarDatosMascota(m3);
+                break;
+
+            default:
+                Console.WriteLine("Opción no válida. Escribe Luka, Mele o Axel.");
+                break;
+        }
+    }
+
+    static void MostrarDatosMascota(Mascota mascota)
+    {
+        mascota.MostrarInformacion();
+        mascota.EmitirSonido();
+
         Console.Write("¿Qué edad tiene la mascota? ");
-        int edad3 = int.Parse(Console.ReadLine());
-        m3.SetEdad(edad3);
-        Console.WriteLine("Edad humana: " + m3.CalcularEdadHumana());
+        int edad;
+        while (!int.TryParse(Console.ReadLine(), out edad) || edad < 0)
+        {
+            Console.Write("Por favor, ingresa una edad válida: ");
+        }
+
+        mascota.SetEdad(edad);
+        Console.WriteLine("Edad humana: " + mascota.CalcularEdadHumana());
     }
 }
